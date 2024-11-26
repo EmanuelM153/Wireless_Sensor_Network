@@ -11,6 +11,6 @@ In this repository you can be found the Nix code for configuring the NixOS insta
 * A python script for reading and sending sensor data to the server
 * A systemd service for automatically executing the python script
 
-> Additionally this configuration is installed in a liveBoot "computer" (within a flake), so that an iso image can be created and written in a usb stick, letting you boot and copy the contents to the RAM memory
+> This configuration is embedded in a flake that outputs a custom NixOS installer, so that an iso image can be created and written in a usb stick, letting you boot and copy the contents to the RAM memory
 
-Finally, you can also be found the source code for the programs run by the microcontrollers of the boards
+Finally, you can also found the source code for the programs run by the microcontrollers of the boards, and a simulation of a **MANET** (Mobile Ad-hoc Network) written in C++ to be executed with the **ns-3** libraries.
