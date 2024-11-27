@@ -17,7 +17,7 @@ in
   options.adhocConfiguration = {
     servidorIp = lib.mkOption {
       type = lib.types.str;
-      default = "18.234.155.118";
+      default = "3.92.26.134";
     };
     isServer = lib.mkEnableOption "Is a server";
   };

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datos del Sensor</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <style>
+    /* Diseño general */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* Contenedor principal */
+    .container {
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      border-radius: 8px;
+     width: 80%;
+      max-width: 1000px;
+    }
+
+    /* Título */
+    h1 {
+      color: #4CAF50;
+      font-size: 2em;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    /* Diseño de la cuadrícula para los sensores */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+      gap: 20px;
+    }
+
+    /* Caja de cada sensor */
+    .sensor {
+      background-color: #fafafa;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 15px;
+   height: 200px; /* Altura fija para los bloques */
+      overflow-y: auto;
+    }
+
+    /* Estilo para el encabezado de cada sensor */
+    .sensor h2 {
+      color: #388e3c;
+      font-size: 1.4em;
+      margin-bottom: 15px;
+    }
+
+    /* Estilo de los mensajes */
+    p {
+      margin: 10px 0;
+      padding: 8px;
+      background-color: #e8f5e9;
+      border-radius: 5px;
+      font-weight: bold;
+      color: #388e3c;
+    }
+
+    /* Estilo para el mensaje inicial */
+    #esperando {
+      font-size: 1.2em;
+      color: #555;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Estado de los Sensores</h1>
+    <div class="grid">
+      <!-- Sensor Touch -->
+      <div class="sensor" id="sensor1">
+        <h2>Sensor Touch</h2>
+        <div id="datosTouch">
+          <p id="estadoTouch">Esperando datos...</p>
+        </div>
+      </div>
+
+      <!-- Sensor Humedad -->
+      <div class="sensor" id="sensor2">
+        <h2>Sensor Humedad</h2>
+        <div id="datosHumedad">
+          <p id="estadoHumedad">Esperando datos...</p>
+        </div>
+      </div>
+     <!-- Sensor Ultrasonido -->
+      <div class="sensor" id="sensor3">
+        <h2>Sensor Ultrasonido</h2>
+        <div id="datosUltrasonido">
+          <p id="estadoUltrasonido">Esperando datos...</p>
+        </div>
+      </div>
+
+      <!-- Sensor infrarrojo -->
+      <div class="sensor" id="sensor4">
+        <h2>Sensor Infrarrojo</h2>
+        <div id="datosInfrarrojo">
+          <p id="estadoInfrarrojo">Esperando datos...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Conexión con el servidor usando Socket.io
+    var socket = io();
+
+    // Cuando el servidor envía un nuevo dato
+    socket.on('nuevo_dato', function({ sensorId, value }) {
+      console.log(`Sensor: ${sensorId}, Estado: ${value}`);
+
+      // Actualizar el div correspondiente según el sensorId
+      if (sensorId === "Touch") {
+        const estadoText = document.getElementById('estadoTouch');
+        if (estadoText.textContent !== value) {
+          estadoText.textContent = `Estado: ${value}`;
+        }
+      }
+
+      if (sensorId === "Humedad") {
+        const estadoText = document.getElementById('estadoHumedad');
+        if (estadoText.textContent !== value) {
+          estadoText.textContent = `Estado: ${value}`;
+        }
+      }
+     if (sensorId === "Ultrasonido") {
+        const estadoText = document.getElementById('estadoUltrasonido');
+        if (estadoText.textContent !== value) {
+          estadoText.textContent = `Estado: ${value}`;
+        }
+      }
+
+      if (sensorId === "Infrarrojo") {
+        const estadoText = document.getElementById('estadoOtro');
+        if (estadoText.textContent !== value) {
+          estadoText.textContent = `Estado: ${value}`;
+        }
+      }
+    });
+  </script>
+</body>
+</html>

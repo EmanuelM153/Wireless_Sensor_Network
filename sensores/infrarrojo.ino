@@ -12,7 +12,7 @@ IRrecv irrecv(RECV_PIN);
 decode_results results;
 
 void setup() {
-  String sensorId = "infrarrojo";
+  String sensorId = "Infrarrojo";
   Serial.begin(9600);
   delay(5000); // Espera para estabilizar
   Serial.println(sensorId);
@@ -38,5 +38,5 @@ void loop() {
     lastState = currentState;
   }
 
-  delay(100);
+  delay(500);
 }

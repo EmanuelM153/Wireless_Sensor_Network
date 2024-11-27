@@ -11,7 +11,7 @@ float humedadAnterior = -1;      // Inicializado a un valor imposible para el se
 float temperaturaAnterior = -1;
 
 void setup() {
-  String sensorId = "humedad-temperatura";
+  String sensorId = "Humedad";
   Serial.begin(9600);
   dht.begin();
   delay(5000);

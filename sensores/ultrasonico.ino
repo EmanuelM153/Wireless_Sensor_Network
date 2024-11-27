@@ -7,7 +7,7 @@ float lastDistance = -500.0;
 float distance;
 
 void setup() {
-  String sensorId = "ultrasonico";
+  String sensorId = "Ultrasonido";
   Serial.begin(9600);
   delay(5000); // Espera para estabilizar
   Serial.println(sensorId);
